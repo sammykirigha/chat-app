@@ -3,11 +3,11 @@ import image from "../data/download.png";
 
 const ChatUsers = () => {
     return (
-        <div className="bg-white p-4 min-w-[35%] rounded-3xl flex flex-col gap-4 items-center">
+        <div className="bg-white p-4 min-w-[35%] rounded-3xl flex flex-col gap-4 items-center pt-4">
             {[1, 2, 3, 4].map((item) => {
                 return (
-                        <div className="flex flex-row justify-between items-center gap-4 ">
-                            <div className=" w-11 h-11 bg-red-400 rounded-full flex items-center pl-1.5">
+                        <div className="flex flex-row justify-between items-center gap-4 cursor-pointer ">
+                            <div className=" w-12 h-12 bg-red-400 rounded-full flex items-center pl-1.5">
                                 <img
                                     src={image}
                                     alt="logo"
@@ -23,8 +23,9 @@ const ChatUsers = () => {
                                     Hi there, how are you doing
                                 </p>
                             </div>
-                            <div className="ml-10">
-                                <span>9:45</span>
+                            <div className="ml-10 flex flex-col">
+                            <span className="text-xs text-gray-400">9:45</span>
+                            <span className="h-4 w-4 pt-0.5 bg-orange-300 rounded-full flex items-center pl-1 text-xs text-white">5</span>
                             </div>
                         </div>
                 );
