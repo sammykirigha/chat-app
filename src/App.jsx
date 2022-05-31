@@ -5,7 +5,7 @@ import ChatPage from "./pages/ChatPage";
 
 const App = () => {
     return (
-		<div className="min-h-screen bg-light-gray ">
+		<div className="min-h-screen bg-light-gray pb-[100px]">
 			<Navbar />
             <Routes>
                 <Route path="/" element={<ChatPage />} />
