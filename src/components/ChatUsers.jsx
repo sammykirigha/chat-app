@@ -3,12 +3,17 @@ import { useChat } from "../contexts/chat.context";
 import image from "../data/download.png";
 
 const ChatUsers = () => {
-    const {chats} = useChat()
+    const { chats, setSelectedChat } = useChat();
+
     return (
         <div className="bg-white p-4 min-w-[35%] rounded-3xl flex flex-col gap-4 max-h-[600px] overflow-y-auto">
-            {chats.map((chat) => {
+            {chats?.map((chat) => {
                 return (
-                    <div key={chat.id} className="flex flex-row justify-betwee items-center gap-4 cursor-pointer ">
+                    <div
+                        onClick={() => setSelectedChat(chat)}
+                        key={chat.id}
+                        className="flex flex-row justify-betwee items-center gap-4 cursor-pointer "
+                    >
                         <div className=" w-12 h-12 relative rounded-full flex items-center pl-1.5">
                             <img
                                 src={image}

@@ -16,11 +16,11 @@ const SocketProvider = ({ children }) => {
         if (user?.id) {
             socket = io("http://localhost:9004");
 
-            socket.emit("setup", user);
+            socket.emit("setup", { ...user, latest: "" });
 
             socket.on("connected", (user) => {
                 setSocketConnected(true);
-                setUsersConnected({ ...user, latest: "" });
+                setUsersConnected(user);
             });
         }
     }, [user]);

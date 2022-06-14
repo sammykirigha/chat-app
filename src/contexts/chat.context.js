@@ -6,6 +6,7 @@ const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
     const [chats, setChats] = useState([]);
+    const [selectedChat, setSelectedChat] = useState([]);
     const [messages, setMesages] = useState([]);
 
     const { socket, usersConnected } = useSocket();
@@ -28,7 +29,7 @@ const ChatProvider = ({ children }) => {
     console.log({chats});
 
     return (
-        <ChatContext.Provider value={{ messages, chats, sendMessage }}>
+        <ChatContext.Provider value={{ messages, chats, sendMessage, selectedChat, setSelectedChat }}>
             {children}
         </ChatContext.Provider>
     );
