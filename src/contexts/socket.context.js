@@ -1,25 +1,34 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import io from "socket.io-client";
+import { useAuth } from "./auth.context";
 
 const SocketContext = createContext();
 
 let socket;
 const SocketProvider = ({ children }) => {
     const [socketConnected, setSocketConnected] = useState(false);
+    const [usersConnected, setUsersConnected] = useState([]);
+
+    const { user } = useAuth();
 
     useEffect(() => {
-        if (true) {
+        if (user?.id) {
             socket = io("http://localhost:9004");
 
-            socket.emit("setup", 587455485748);
+            socket.emit("setup", user);
 
-            socket.on("connected", () => setSocketConnected(true));
+            socket.on("connected", (user) => {
+                setSocketConnected(true);
+                setUsersConnected({ ...user, latest: "" });
+            });
         }
-    }, []);
+    }, [user]);
 
     return (
-        <SocketContext.Provider value={{ socket, socketConnected }}>
+        <SocketContext.Provider
+            value={{ socket, socketConnected, usersConnected }}
+        >
             {children}
         </SocketContext.Provider>
     );

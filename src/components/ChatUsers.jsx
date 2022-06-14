@@ -1,12 +1,14 @@
 import React from "react";
+import { useChat } from "../contexts/chat.context";
 import image from "../data/download.png";
 
 const ChatUsers = () => {
+    const {chats} = useChat()
     return (
         <div className="bg-white p-4 min-w-[35%] rounded-3xl flex flex-col gap-4 max-h-[600px] overflow-y-auto">
-            {[1, 2, 3, 4,5,6,9,10, 11].map((item) => {
+            {chats.map((chat) => {
                 return (
-                    <div className="flex flex-row justify-betwee items-center gap-4 cursor-pointer ">
+                    <div key={chat.id} className="flex flex-row justify-betwee items-center gap-4 cursor-pointer ">
                         <div className=" w-12 h-12 relative rounded-full flex items-center pl-1.5">
                             <img
                                 src={image}
@@ -17,10 +19,10 @@ const ChatUsers = () => {
                         </div>
                         <div className="flex flex-col flex-1 border-b border-gray-200 pb-1">
                             <h4 className="text-md text-slate-800 font-semibold tracking-wider">
-                                John Joe
+                                {chat.name}
                             </h4>
                             <p className="text-sm text-gray-500">
-                                Hi there, how are you doing
+                                {chat.latest}
                             </p>
                         </div>
                         <div className="flex flex-col ml-6">
